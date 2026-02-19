@@ -16,8 +16,10 @@ function renderCandles() {
     const div = document.createElement("div");
     div.className = "candle";
     div.innerHTML = `
-      <img src="images/candle.gif" alt="Candle" width="40">
-      <p>${candle.message}</p>
+      <div class="candle-glow">
+        <img src="images/candle.gif" alt="Candle" width="40">
+      </div>
+      <p>${candle.message}</p>      
     `;
     candleWall.appendChild(div);
   });
@@ -40,3 +42,4 @@ form.addEventListener("submit", function(e){
   renderCandles();
   form.reset();
 });
+
