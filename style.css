@@ -78,7 +78,7 @@ textarea {
 
 /* ---------- MODAL ---------- */
 .modal {
-  display: none;
+  display: none; /* hidden by default */
   position: fixed;
   z-index: 1000;
   left: 0; top: 0;
@@ -89,7 +89,7 @@ textarea {
 }
 
 .modal.show {
-  display: flex;
+  display: flex; /* show modal when class added */
 }
 
 .modal-content {
