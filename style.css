@@ -1,3 +1,4 @@
+/* ---------- BODY & GENERAL ---------- */
 body {
   background-color: #111;
   color: #fff;
@@ -31,6 +32,7 @@ textarea {
   margin-top: 10px;
 }
 
+/* ---------- CANDLE WALL ---------- */
 #candleWall {
   display: flex;
   flex-wrap: wrap;
@@ -43,7 +45,7 @@ textarea {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;
+  width: 120px;           /* fixed width for spacing */
   text-align: center;
   margin: 10px;
   opacity: 0;
@@ -56,13 +58,14 @@ textarea {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ---------- CANDLE IMAGE ---------- */
 .candle img {
   display: block;
   margin-bottom: 5px;
-  filter: drop-shadow(0 0 15px rgba(255,200,50,0.5));
+  filter: drop-shadow(0 0 15px rgba(255,200,50,0.5)); /* GOLDEN CAST */
 }
 
-/* ONE-LINE TRUNCATED MESSAGE */
+/* ---------- MESSAGE TEXT (ONE LINE TRUNCATED) ---------- */
 .candle p {
   text-align: center;
   font-size: 0.9rem;
@@ -85,6 +88,10 @@ textarea {
   align-items: center;
 }
 
+.modal.show {
+  display: flex;
+}
+
 .modal-content {
   background-color: #222;
   padding: 20px;
@@ -93,6 +100,7 @@ textarea {
   text-align: center;
   color: #fff;
   position: relative;
+  word-wrap: break-word;
 }
 
 #modalClose {
