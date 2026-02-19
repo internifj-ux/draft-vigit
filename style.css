@@ -52,62 +52,55 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;       /* Fixed width for uniform spacing */
+  width: 120px;        /* fixed width */
+  min-height: 140px;   /* fixed height */
+  margin: 10px;
   text-align: center;
+  position: relative;  /* for glow */
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 
-/* ---------- CANDLE GLOW ---------- */
-.candle-glow {
-  position: relative;
-  display: inline-block;
-  border-radius: 50%;
-  padding: 10px;
-  animation: flicker 1.5s infinite alternate;
-  box-shadow: 0 0 20px 10px rgba(255, 180, 50, 0.4);
+/* ---------- FADE-IN ANIMATION ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.candle-glow::before {
+/* ---------- WARM GLOW ---------- */
+.candle::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 80px;
   background: radial-gradient(circle, rgba(255,200,50,0.3) 0%, rgba(255,180,0,0) 70%);
+  border-radius: 50%;
   z-index: -1;
   animation: flicker 1.5s infinite alternate;
 }
 
-/* ---------- FLICKER ANIMATION ---------- */
+/* Flicker animation */
 @keyframes flicker {
-  0% {
-    box-shadow: 0 0 15px 5px rgba(255, 180, 50, 0.3);
-  }
-  25% {
-    box-shadow: 0 0 22px 12px rgba(255, 190, 60, 0.35);
-  }
-  50% {
-    box-shadow: 0 0 18px 8px rgba(255, 170, 50, 0.4);
-  }
-  75% {
-    box-shadow: 0 0 25px 15px rgba(255, 200, 70, 0.45);
-  }
-  100% {
-    box-shadow: 0 0 20px 10px rgba(255, 180, 50, 0.4);
-  }
+  0%   { transform: translateX(-50%) scale(1); opacity: 0.3; }
+  25%  { transform: translateX(-50%) scale(1.1); opacity: 0.35; }
+  50%  { transform: translateX(-50%) scale(0.95); opacity: 0.4; }
+  75%  { transform: translateX(-50%) scale(1.05); opacity: 0.35; }
+  100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
 }
 
 /* ---------- CANDLE IMAGE ---------- */
 .candle img {
   display: block;
   margin-bottom: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---------- MESSAGE TEXT ---------- */
 .candle p {
   max-height: 80px;
-  overflow-y: auto;        /* Scroll if too long */
+  overflow-y: auto;        /* scroll if too long */
   word-wrap: break-word;
+  text-align: center;
 }
