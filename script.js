@@ -10,25 +10,19 @@ const modalClose = document.getElementById("modalClose");
 // Load saved candles
 let candles = JSON.parse(localStorage.getItem("candles")) || [];
 
-// Render all candles
+// Render candles
 function renderCandles() {
   candleWall.innerHTML = "";
 
-  candles.forEach((candle) => {
+  candles.forEach((candle, index) => {
     const div = document.createElement("div");
     div.className = "candle";
+    div.dataset.index = index; // store index for reference
 
     div.innerHTML = `
       <img src="images/candle.gif" alt="Candle" width="40">
       <p>${candle.message}</p>
     `;
-
-    // Click message to show modal
-    div.querySelector("p").addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent double click issues
-      modalMessage.textContent = candle.message;
-      modal.classList.add("show");
-    });
 
     candleWall.appendChild(div);
   });
@@ -39,11 +33,21 @@ function renderCandles() {
 // Initial render
 renderCandles();
 
+// Event delegation for modal pop-up
+candleWall.addEventListener("click", (e) => {
+  const candleDiv = e.target.closest(".candle");
+  if (!candleDiv) return; // click was outside a candle
+
+  const index = candleDiv.dataset.index;
+  modalMessage.textContent = candles[index].message;
+  modal.classList.add("show");
+});
+
 // Submit new candle
-form.addEventListener("submit", function(e){
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   const message = messageInput.value.trim();
-  if(!message) return;
+  if (!message) return;
 
   candles.push({ message });
   localStorage.setItem("candles", JSON.stringify(candles));
@@ -55,5 +59,5 @@ form.addEventListener("submit", function(e){
 // Close modal
 modalClose.addEventListener("click", () => modal.classList.remove("show"));
 modal.addEventListener("click", (e) => {
-  if(e.target === modal) modal.classList.remove("show");
+  if (e.target === modal) modal.classList.remove("show");
 });
