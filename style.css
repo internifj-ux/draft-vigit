@@ -52,55 +52,36 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;        /* fixed width */
-  min-height: 140px;   /* fixed height */
+  width: 120px;
+  min-height: 140px;
   margin: 10px;
   text-align: center;
-  position: relative;  /* for glow */
   opacity: 0;
   animation: fadeIn 0.5s forwards;
 }
 
-/* ---------- FADE-IN ANIMATION ---------- */
+/* Fade-in for newly added candles */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- WARM GLOW ---------- */
-.candle::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 80px; height: 80px;
-  background: radial-gradient(circle, rgba(255,200,50,0.3) 0%, rgba(255,180,0,0) 70%);
-  border-radius: 50%;
-  z-index: -1;
-  animation: flicker 1.5s infinite alternate;
-}
-
-/* Flicker animation */
-@keyframes flicker {
-  0%   { transform: translateX(-50%) scale(1); opacity: 0.3; }
-  25%  { transform: translateX(-50%) scale(1.1); opacity: 0.35; }
-  50%  { transform: translateX(-50%) scale(0.95); opacity: 0.4; }
-  75%  { transform: translateX(-50%) scale(1.05); opacity: 0.35; }
-  100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
-}
-
-/* ---------- CANDLE IMAGE ---------- */
+/* ---------- CANDLE IMAGE WITH GOLDEN CAST ---------- */
 .candle img {
   display: block;
   margin-bottom: 5px;
   position: relative;
   z-index: 1;
+  filter: drop-shadow(0 0 20px rgba(255, 200, 50, 0.5));
 }
 
 /* ---------- MESSAGE TEXT ---------- */
 .candle p {
-  max-height: 80px;
-  overflow-y: auto;        /* scroll if too long */
-  word-wrap: break-word;
   text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;       /* MAX 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 0.9rem;
 }
