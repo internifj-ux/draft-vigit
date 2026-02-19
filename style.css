@@ -43,11 +43,12 @@ textarea {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  width: 120px;           /* fixed width for spacing */
+  width: 120px;
   text-align: center;
   margin: 10px;
   opacity: 0;
   animation: fadeIn 0.5s forwards;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -58,13 +59,46 @@ textarea {
 .candle img {
   display: block;
   margin-bottom: 5px;
-  filter: drop-shadow(0 0 15px rgba(255,200,50,0.5)); /* GOLDEN CAST */
+  filter: drop-shadow(0 0 15px rgba(255,200,50,0.5));
 }
 
+/* ONE-LINE TRUNCATED MESSAGE */
 .candle p {
   text-align: center;
   font-size: 0.9rem;
-  max-height: 3.6em;  /* ~3 lines */
+  width: 100%;
+  white-space: nowrap;
   overflow: hidden;
-  word-wrap: break-word;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* ---------- MODAL ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 300px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+#modalClose {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
 }
