@@ -1,0 +1,39 @@
+body {
+  background-color: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+textarea {
+  width: 80%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+#candleForm button {
+  padding: 0.7rem 1.2rem;
+  background-color: #ff9800;
+  color: #111;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.candle {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}
+
+.candle img {
+  display: block;
+  margin: 0 auto;
+}
