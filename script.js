@@ -7,13 +7,14 @@ const modal = document.getElementById("modal");
 const modalMessage = document.getElementById("modalMessage");
 const modalClose = document.getElementById("modalClose");
 
+// Load saved candles
 let candles = JSON.parse(localStorage.getItem("candles")) || [];
 
-// Render candles
+// Render all candles
 function renderCandles() {
   candleWall.innerHTML = "";
 
-  candles.forEach((candle, index) => {
+  candles.forEach((candle) => {
     const div = document.createElement("div");
     div.className = "candle";
 
@@ -22,9 +23,9 @@ function renderCandles() {
       <p>${candle.message}</p>
     `;
 
-    // Show modal on click
+    // Show modal with full message on click
     div.addEventListener("click", () => {
-      modal.style.display = "flex";
+      modal.classList.add("show");
       modalMessage.textContent = candle.message;
     });
 
@@ -51,7 +52,7 @@ form.addEventListener("submit", function(e){
 });
 
 // Close modal
-modalClose.addEventListener("click", () => modal.style.display = "none");
+modalClose.addEventListener("click", () => modal.classList.remove("show"));
 modal.addEventListener("click", (e) => {
-  if(e.target === modal) modal.style.display = "none";
+  if(e.target === modal) modal.classList.remove("show");
 });
