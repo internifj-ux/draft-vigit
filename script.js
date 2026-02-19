@@ -17,7 +17,7 @@ function renderCandles() {
   candles.forEach((candle, index) => {
     const div = document.createElement("div");
     div.className = "candle";
-    div.dataset.index = index; // store index for reference
+    div.dataset.index = index;
 
     div.innerHTML = `
       <img src="images/candle.gif" alt="Candle" width="40">
@@ -36,7 +36,7 @@ renderCandles();
 // Event delegation for modal pop-up
 candleWall.addEventListener("click", (e) => {
   const candleDiv = e.target.closest(".candle");
-  if (!candleDiv) return; // click was outside a candle
+  if (!candleDiv) return;
 
   const index = candleDiv.dataset.index;
   modalMessage.textContent = candles[index].message;
