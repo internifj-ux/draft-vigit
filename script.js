@@ -1,15 +1,12 @@
 console.log("Script loaded");
 
-// Elements
 const form = document.getElementById("candleForm");
 const messageInput = document.getElementById("messageInput");
 const candleWall = document.getElementById("candleWall");
 const candleCount = document.getElementById("candleCount");
 
-// Load existing candles from localStorage
 let candles = JSON.parse(localStorage.getItem("candles")) || [];
 
-// Render candles
 function renderCandles() {
   candleWall.innerHTML = "";
 
@@ -28,10 +25,8 @@ function renderCandles() {
   candleCount.textContent = candles.length;
 }
 
-// Initial render
 renderCandles();
 
-// Handle form submit
 form.addEventListener("submit", function(e){
   e.preventDefault();
 
