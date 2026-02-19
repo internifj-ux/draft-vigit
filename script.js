@@ -23,10 +23,11 @@ function renderCandles() {
       <p>${candle.message}</p>
     `;
 
-    // Show modal with full message on click
-    div.addEventListener("click", () => {
-      modal.classList.add("show");
+    // Click message to show modal
+    div.querySelector("p").addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent double click issues
       modalMessage.textContent = candle.message;
+      modal.classList.add("show");
     });
 
     candleWall.appendChild(div);
@@ -38,7 +39,7 @@ function renderCandles() {
 // Initial render
 renderCandles();
 
-// Handle form submit
+// Submit new candle
 form.addEventListener("submit", function(e){
   e.preventDefault();
   const message = messageInput.value.trim();
