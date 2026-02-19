@@ -12,15 +12,16 @@ let candles = JSON.parse(localStorage.getItem("candles")) || [];
 // Render candles
 function renderCandles() {
   candleWall.innerHTML = "";
+
   candles.forEach(candle => {
     const div = document.createElement("div");
     div.className = "candle";
+
     div.innerHTML = `
-      <div class="candle-glow">
-        <img src="images/candle.gif" alt="Candle" width="40">
-      </div>
-      <p>${candle.message}</p>      
+      <img src="images/candle.gif" alt="Candle" width="40">
+      <p>${candle.message}</p>
     `;
+
     candleWall.appendChild(div);
   });
 
@@ -33,6 +34,7 @@ renderCandles();
 // Handle form submit
 form.addEventListener("submit", function(e){
   e.preventDefault();
+
   const message = messageInput.value.trim();
   if(!message) return;
 
@@ -42,4 +44,3 @@ form.addEventListener("submit", function(e){
   renderCandles();
   form.reset();
 });
-
