@@ -15,28 +15,45 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// DOM Elements
+// DOM
 const form = document.getElementById("candleForm");
 const messageInput = document.getElementById("messageInput");
 const candleWall = document.getElementById("candleWall");
 const candleCount = document.getElementById("candleCount");
+
+// Modal
+const modal = document.getElementById("modal");
+const modalText = document.getElementById("modal-text");
+const modalClose = document.getElementById("modal-close");
+
+function showModal(text) {
+  modalText.textContent = text;
+  modal.style.display = "flex";
+}
+
+modalClose.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+window.addEventListener("click", (e) => {
+  if (e.target === modal) modal.style.display = "none";
+});
 
 // Display candle
 function displayCandle(message) {
   const div = document.createElement("div");
   div.className = "candle";
 
-  // Truncate preview for wall
-  let preview = message.length > 60 ? message.slice(0, 57) + "…" : message;
+  // preview text (max ~10 words)
+  let preview = message.split(" ").slice(0, 10).join(" ");
+  if (message.length > preview.length) preview += "…";
 
   div.innerHTML = `
     <img src="images/candle.gif" width="40">
     <p class="candle-message" title="${message}">${preview}</p>
   `;
 
-  // Click to see full message
   div.querySelector(".candle-message").addEventListener("click", () => {
-    alert(message);
+    showModal(message);
   });
 
   candleWall.appendChild(div);
@@ -70,7 +87,7 @@ async function saveCandle(message) {
   }
 }
 
-// Form submit
+// Submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const message = messageInput.value.trim();
