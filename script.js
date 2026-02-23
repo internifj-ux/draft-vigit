@@ -1,11 +1,7 @@
-// -----------------------------
-// Candle Vigil Firebase Script
-// -----------------------------
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// --- FIREBASE CONFIG ---
+// --- Firebase config ---
 const firebaseConfig = {
   apiKey: "AIzaSyBGKM6qukVRlkhDMHzBBBDYMTYaDHM8gcA",
   authDomain: "digital-vigil-1b773.firebaseapp.com",
@@ -16,31 +12,29 @@ const firebaseConfig = {
   measurementId: "G-0ZRV5R1C88"
 };
 
-// --- INITIALIZE FIREBASE ---
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// -----------------------------
-// DOM ELEMENTS
-// -----------------------------
+// DOM Elements
 const form = document.getElementById("candleForm");
 const messageInput = document.getElementById("messageInput");
 const candleWall = document.getElementById("candleWall");
 const candleCount = document.getElementById("candleCount");
 
-// -----------------------------
-// DISPLAY CANDLE
-// -----------------------------
+// Display candle
 function displayCandle(message) {
   const div = document.createElement("div");
   div.className = "candle";
 
+  // Truncate preview for wall
+  let preview = message.length > 60 ? message.slice(0, 57) + "…" : message;
+
   div.innerHTML = `
     <img src="images/candle.gif" width="40">
-    <p class="candle-message" title="${message}">${message}</p>
+    <p class="candle-message" title="${message}">${preview}</p>
   `;
 
-  // On click, show full message
+  // Click to see full message
   div.querySelector(".candle-message").addEventListener("click", () => {
     alert(message);
   });
@@ -48,9 +42,7 @@ function displayCandle(message) {
   candleWall.appendChild(div);
 }
 
-// -----------------------------
-// LOAD CANDLES FROM FIRESTORE
-// -----------------------------
+// Load candles from Firestore
 async function loadCandles() {
   candleWall.innerHTML = "";
   let count = 0;
@@ -66,24 +58,19 @@ async function loadCandles() {
   }
 }
 
-// -----------------------------
-// SAVE CANDLE TO FIRESTORE
-// -----------------------------
+// Save candle
 async function saveCandle(message) {
   try {
     await addDoc(collection(db, "candles"), {
-      message: message,
+      message,
       createdAt: serverTimestamp()
     });
-    console.log("Saved globally!");
   } catch (error) {
     console.error("Error saving candle:", error);
   }
 }
 
-// -----------------------------
-// FORM SUBMIT
-// -----------------------------
+// Form submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const message = messageInput.value.trim();
@@ -94,7 +81,5 @@ form.addEventListener("submit", async (e) => {
   loadCandles();
 });
 
-// -----------------------------
-// INITIAL LOAD
-// -----------------------------
+// Initial load
 window.addEventListener("DOMContentLoaded", loadCandles);
