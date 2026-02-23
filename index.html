@@ -8,16 +8,18 @@
     import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "PASTE_YOURS",
-      authDomain: "PASTE_YOURS",
-      projectId: "PASTE_YOURS",
-      storageBucket: "PASTE_YOURS",
-      messagingSenderId: "PASTE_YOURS",
-      appId: "PASTE_YOURS"
-    };
+     apiKey: "AIzaSyBGKM6qukVRlkhDMHzBBBDYMTYaDHM8gcA",
+     authDomain: "digital-vigil-1b773.firebaseapp.com",
+     projectId: "digital-vigil-1b773",
+     storageBucket: "digital-vigil-1b773.firebasestorage.app",
+     messagingSenderId: "408186758572",
+     appId: "1:408186758572:web:2b343ebb380411b4590609",
+     measurementId: "G-0ZRV5R1C88"
+   };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+// Initialize Firebase
+   const app = initializeApp(firebaseConfig);
+   const analytics = getAnalytics(app);
 
     window.db = db;
     window.addDoc = addDoc;
@@ -61,4 +63,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
