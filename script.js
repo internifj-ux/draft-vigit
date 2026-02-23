@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// --- Firebase config ---
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBGKM6qukVRlkhDMHzBBBDYMTYaDHM8gcA",
   authDomain: "digital-vigil-1b773.firebaseapp.com",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// DOM
+// DOM Elements
 const form = document.getElementById("candleForm");
 const messageInput = document.getElementById("messageInput");
 const candleWall = document.getElementById("candleWall");
@@ -28,12 +28,10 @@ const modalClose = document.getElementById("modal-close");
 
 function showModal(text) {
   modalText.textContent = text;
-  modal.style.display = "flex";
+  modal.style.display = "flex"; // centered
 }
 
-modalClose.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+modalClose.addEventListener("click", () => modal.style.display = "none");
 window.addEventListener("click", (e) => {
   if (e.target === modal) modal.style.display = "none";
 });
@@ -43,7 +41,7 @@ function displayCandle(message) {
   const div = document.createElement("div");
   div.className = "candle";
 
-  // preview text (max ~10 words)
+  // preview ~10 words
   let preview = message.split(" ").slice(0, 10).join(" ");
   if (message.length > preview.length) preview += "…";
 
@@ -87,7 +85,7 @@ async function saveCandle(message) {
   }
 }
 
-// Submit
+// Form submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const message = messageInput.value.trim();
@@ -100,4 +98,3 @@ form.addEventListener("submit", async (e) => {
 
 // Initial load
 window.addEventListener("DOMContentLoaded", loadCandles);
-
