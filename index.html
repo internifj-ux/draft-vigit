@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFJ Candle Vigil</title>
+  <link rel="stylesheet" href="style.css">
 
-   <!-- FIREBASE START -->
+  <!-- FIREBASE MODULE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
-     apiKey: "AIzaSyBGKM6qukVRlkhDMHzBBBDYMTYaDHM8gcA",
-     authDomain: "digital-vigil-1b773.firebaseapp.com",
-     projectId: "digital-vigil-1b773",
-     storageBucket: "digital-vigil-1b773.firebasestorage.app",
-     messagingSenderId: "408186758572",
-     appId: "1:408186758572:web:2b343ebb380411b4590609",
-     measurementId: "G-0ZRV5R1C88"
-   };
+      apiKey: "AIzaSyBGKM6qukVRlkhDMHzBBBDYMTYaDHM8gcA",
+      authDomain: "digital-vigil-1b773.firebaseapp.com",
+      projectId: "digital-vigil-1b773",
+      storageBucket: "digital-vigil-1b773.firebasestorage.app",
+      messagingSenderId: "408186758572",
+      appId: "1:408186758572:web:2b343ebb380411b4590609",
+      measurementId: "G-0ZRV5R1C88"
+    };
 
-// Initialize Firebase
-   const app = initializeApp(firebaseConfig);
-   const analytics = getAnalytics(app);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
     window.db = db;
     window.addDoc = addDoc;
@@ -27,42 +30,18 @@
     window.collection = collection;
     window.serverTimestamp = serverTimestamp;
   </script>
-  <!-- FIREBASE END -->
-
-  <meta charset="UTF-8">
-  <title>Digital Candle Vigil</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <h1>In Memory of Journalists Killed in 2025</h1>
-  <p>Total candles lit: <span id="candleCount">0</span></p>
-
-  <form id="candleForm">
-    <textarea 
-      id="messageInput" 
-      placeholder="Leave a message in memory…" 
-      maxlength="180"
-      required
-    ></textarea>
-    <br>
-    <button type="submit">Light Candle 🕯️</button>
-  </form>
-
-  <div id="candleWall"></div>
-
-  <!-- Modal for full message -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span id="modalClose">&times;</span>
-      <p id="modalMessage"></p>
-    </div>
+  <div class="container">
+    <h1>Light a Candle for Journalists</h1>
+    <form id="candleForm">
+      <textarea id="messageInput" maxlength="120" placeholder="Write a short message..."></textarea>
+      <button type="submit">Light Candle</button>
+    </form>
+    <p>Total Candles: <span id="candleCount">0</span></p>
+    <div id="candleWall"></div>
   </div>
 
-   <script type="module" src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
-
-
-
