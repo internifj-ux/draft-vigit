@@ -100,3 +100,4 @@ form.addEventListener("submit", async (e) => {
 
 // Initial load
 window.addEventListener("DOMContentLoaded", loadCandles);
+
