@@ -1,3 +1,4 @@
+/* -------------------- Body & Container -------------------- */
 body {
   background-color: #111;
   color: #fff;
@@ -16,6 +17,7 @@ h1 {
   font-size: 1.8rem;
 }
 
+/* -------------------- Candle Form -------------------- */
 #candleForm {
   display: flex;
   flex-direction: column;
@@ -44,35 +46,43 @@ h1 {
   font-weight: bold;
 }
 
+/* -------------------- Candle Wall -------------------- */
 #candleWall {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem; /* space between candles */
 }
 
+/* -------------------- Candle Box -------------------- */
 .candle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 80px;
+  width: 80px;      /* fixed width */
+  height: 120px;    /* fixed height to contain image + message */
   text-align: center;
   position: relative;
+  justify-content: flex-start;
 }
 
+/* -------------------- Candle Message -------------------- */
 .candle-message {
   font-size: 0.8rem;
   margin-top: 0.3rem;
   line-height: 1.1em;
-  max-height: 3.3em; /* max 3 lines */
+  max-height: 3.3em;           /* max 3 lines */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 3;       /* show max 3 lines */
   -webkit-box-orient: vertical;
+  white-space: normal;          /* allow line breaks */
+  word-break: break-word;       /* break long words if needed */
   cursor: pointer;
 }
 
+/* -------------------- Candle Image -------------------- */
 .candle img {
-  filter: drop-shadow(0 0 10px #ffcc33);
+  filter: drop-shadow(0 0 10px #ffcc33); /* warm radial glow */
 }
