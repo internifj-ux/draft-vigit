@@ -60,6 +60,9 @@ h1 {
   text-align: center;
   position: relative;
   justify-content: flex-start;
+  border-radius: 8px;
+  padding: 2px;
+  background: #111;
 }
 
 .candle-message {
@@ -69,9 +72,7 @@ h1 {
   max-height: 3.3em; /* 3 lines */
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  display: block;
   white-space: normal;
   word-break: break-word;
   cursor: pointer;
@@ -79,4 +80,32 @@ h1 {
 
 .candle img {
   filter: drop-shadow(0 0 10px #ffcc33);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #222;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 300px;
+  color: #fff;
+}
+
+#modal-close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
 }
