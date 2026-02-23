@@ -102,6 +102,7 @@ h1 {
   border-radius: 8px;
   max-width: 300px;
   color: #fff;
+  word-break: break-word;
 }
 
 #modal-close {
@@ -109,3 +110,4 @@ h1 {
   cursor: pointer;
   font-weight: bold;
 }
+
