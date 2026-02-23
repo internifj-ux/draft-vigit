@@ -48,7 +48,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1rem; /* equal distance between all candles */
 }
 
 .candle {
@@ -64,12 +64,10 @@ h1 {
   font-size: 0.8rem;
   margin-top: 0.3rem;
   line-height: 1.1em;
-  max-height: 3.3em; /* 3 lines max */
+  max-height: 1.1em; /* 1 line */
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  white-space: nowrap; /* ensures only 1 line is shown */
   cursor: pointer;
 }
 
@@ -77,3 +75,4 @@ h1 {
   filter: drop-shadow(0 0 10px #ffcc33);
   border-radius: 50%;
 }
+
