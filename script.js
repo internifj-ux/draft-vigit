@@ -1,3 +1,23 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBGKM6qukVRlkhDMHzBBBDYMTYaDHM8gcA",
+  authDomain: "digital-vigil-1b773.firebaseapp.com",
+  projectId: "digital-vigil-1b773",
+  storageBucket: "digital-vigil-1b773.firebasestorage.app",
+  messagingSenderId: "408186758572",
+  appId: "1:408186758572:web:2b343ebb380411b4590609",
+  measurementId: "G-0ZRV5R1C88"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const form = document.getElementById("candleForm");
 const messageInput = document.getElementById("messageInput");
 const candleWall = document.getElementById("candleWall");
@@ -50,8 +70,26 @@ form.addEventListener("submit", (e) => {
   if (!message) return;
 
   candles.push({ message });
-  localStorage.setItem("candles", JSON.stringify(candles));
+  async function saveCandle(message) {
+  try {
+    await addDoc(collection(db, "candles"), {
+      message: message,
+      createdAt: serverTimestamp()
+    });
+    console.log("Saved globally");
+  } catch (error) {
+    console.error("Error saving candle:", error);
+  }
+}
+  async function loadCandles() {
+  const querySnapshot = await getDocs(collection(db, "candles"));
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    displayCandle(data.message);
+  });
+}
 
+window.addEventListener("DOMContentLoaded", loadCandles);
   renderCandles();
   form.reset();
 });
@@ -61,3 +99,4 @@ modalClose.addEventListener("click", () => modal.classList.remove("show"));
 modal.addEventListener("click", (e) => {
   if (e.target === modal) modal.classList.remove("show");
 });
+
