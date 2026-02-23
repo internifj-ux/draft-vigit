@@ -6,7 +6,7 @@
   <title>IFJ Candle Vigil</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- FIREBASE MODULE -->
+  <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -40,6 +40,14 @@
     </form>
     <p>Total Candles: <span id="candleCount">0</span></p>
     <div id="candleWall"></div>
+  </div>
+
+  <!-- Modal for full message -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="modal-close">&times;</span>
+      <p id="modal-text"></p>
+    </div>
   </div>
 
   <script type="module" src="script.js"></script>
