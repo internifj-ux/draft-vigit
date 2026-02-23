@@ -40,8 +40,9 @@ function displayCandle(message) {
     <p class="candle-message" title="${message}">${message}</p>
   `;
 
+  // On click, show full message
   div.querySelector(".candle-message").addEventListener("click", () => {
-    alert(message); // simple popup
+    alert(message);
   });
 
   candleWall.appendChild(div);
